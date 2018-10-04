@@ -18,10 +18,11 @@ type PaymentMethodRequest struct {
 }
 
 type PaymentMethodRequestOptions struct {
-	MakeDefault                   bool   `xml:"make-default,omitempty"`
-	FailOnDuplicatePaymentMethod  bool   `xml:"fail-on-duplicate-payment-method,omitempty"`
-	VerifyCard                    *bool  `xml:"verify-card,omitempty"`
-	VerificationMerchantAccountId string `xml:"verification-merchant-account-id,omitempty"`
+	MakeDefault                     bool   `xml:"make-default,omitempty"`
+	FailOnDuplicatePaymentMethod    bool   `xml:"fail-on-duplicate-payment-method,omitempty"`
+	VerifyCard                      *bool  `xml:"verify-card,omitempty"`
+	VerificationMerchantAccountId   string `xml:"verification-merchant-account-id,omitempty"`
+	USBankAccountVerificationMethod string `xml:"us-bank-account-verification-method,omitempty"`
 }
 
 func (g *PaymentMethodGateway) Create(ctx context.Context, paymentMethodRequest *PaymentMethodRequest) (PaymentMethod, error) {
