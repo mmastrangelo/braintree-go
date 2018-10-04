@@ -19,7 +19,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/lionelbarrow/braintree-go"
+	"github.com/mmastrangelo/braintree-go"
 )
 
 func getBT() *braintree.Braintree {

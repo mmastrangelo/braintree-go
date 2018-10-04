@@ -1,1 +1,1 @@
-module github.com/lionelbarrow/braintree-go
+module github.com/mmastrangelo/braintree-go

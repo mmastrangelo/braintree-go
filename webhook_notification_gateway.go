@@ -3,7 +3,7 @@ package braintree
 import (
 	"encoding/base64"
 	"encoding/xml"
-	"github.com/lionelbarrow/braintree-go/xmlnil"
+	"github.com/mmastrangelo/braintree-go/xmlnil"
 	"net/http"
 )
 

@@ -4,7 +4,7 @@ import (
 	"encoding/xml"
 	"time"
 
-	"github.com/lionelbarrow/braintree-go/customfields"
+	"github.com/mmastrangelo/braintree-go/customfields"
 )
 
 type TransactionStatus string
