@@ -1,8 +1,9 @@
 package braintree
 
 import (
-	"github.com/mmastrangelo/braintree-go/customfields"
 	"time"
+
+	"github.com/mmastrangelo/braintree-go/customfields"
 )
 
 type Customer struct {
@@ -22,6 +23,7 @@ type Customer struct {
 	VenmoAccounts      *VenmoAccounts            `xml:"venmo-accounts"`
 	AndroidPayCards    *AndroidPayCards          `xml:"android-pay-cards"`
 	ApplePayCards      *ApplePayCards            `xml:"apple-pay-cards"`
+	USBankAccounts     *USBankAccounts           `xml:"us-bank-accounts"`
 	PaymentMethodNonce string                    `xml:"payment-method-nonce"`
 	Addresses          *Addresses                `xml:"addresses"`
 	CreatedAt          *time.Time                `xml:"created-at"`
@@ -36,6 +38,8 @@ func (c *Customer) PaymentMethods() []PaymentMethod {
 	paymentMethods = append(paymentMethods, c.VenmoAccounts.PaymentMethods()...)
 	paymentMethods = append(paymentMethods, c.AndroidPayCards.PaymentMethods()...)
 	paymentMethods = append(paymentMethods, c.ApplePayCards.PaymentMethods()...)
+	paymentMethods = append(paymentMethods, c.USBankAccounts.PaymentMethods()...)
+
 	return paymentMethods
 }
 
