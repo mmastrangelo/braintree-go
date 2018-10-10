@@ -22,19 +22,24 @@ func NewDecimal(unscaled int64, scale int) *Decimal {
 
 // MarshalText outputs a decimal representation of the scaled number
 func (d *Decimal) MarshalText() (text []byte, err error) {
+
 	b := new(bytes.Buffer)
-	if d.Scale <= 0 {
-		b.WriteString(strconv.FormatInt(d.Unscaled, 10))
-		b.WriteString(strings.Repeat("0", -d.Scale))
-	} else {
-		str := strconv.FormatInt(d.Unscaled, 10)
-		if len(str) < d.Scale {
-			str = strings.Repeat("0", d.Scale) + str
+
+	if d != nil {
+		if d.Scale <= 0 {
+			b.WriteString(strconv.FormatInt(d.Unscaled, 10))
+			b.WriteString(strings.Repeat("0", -d.Scale))
+		} else {
+			str := strconv.FormatInt(d.Unscaled, 10)
+			if len(str) < d.Scale {
+				str = strings.Repeat("0", d.Scale) + str
+			}
+			b.WriteString(str[:len(str)-d.Scale])
+			b.WriteString(".")
+			b.WriteString(str[len(str)-d.Scale:])
 		}
-		b.WriteString(str[:len(str)-d.Scale])
-		b.WriteString(".")
-		b.WriteString(str[len(str)-d.Scale:])
 	}
+
 	return b.Bytes(), nil
 }
 
