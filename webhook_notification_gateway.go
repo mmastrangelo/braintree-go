@@ -3,8 +3,9 @@ package braintree
 import (
 	"encoding/base64"
 	"encoding/xml"
-	"github.com/mmastrangelo/braintree-go/xmlnil"
 	"net/http"
+
+	"github.com/mmastrangelo/braintree-go/xmlnil"
 )
 
 type WebhookNotificationGateway struct {
@@ -18,9 +19,13 @@ func (w *WebhookNotificationGateway) ParseRequest(r *http.Request) (*WebhookNoti
 	return w.Parse(signature, payload)
 }
 
-func (w *WebhookNotificationGateway) Parse(signature, payload string) (*WebhookNotification, error) {
+func (w *WebhookNotificationGateway) VerifySignature(signature, payload string) (bool, error) {
 	hmacer := newHmacer(w.apiKey.publicKey, w.apiKey.privateKey)
-	if verified, err := hmacer.verifySignature(signature, payload); err != nil {
+	return hmacer.verifySignature(signature, payload)
+}
+
+func (w *WebhookNotificationGateway) Parse(signature, payload string) (*WebhookNotification, error) {
+	if verified, err := w.VerifySignature(signature, payload); err != nil {
 		return nil, err
 	} else if !verified {
 		return nil, SignatureError{}
