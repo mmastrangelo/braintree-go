@@ -84,6 +84,7 @@ type Transaction struct {
 	ThreeDSecureInfo             *ThreeDSecureInfo         `xml:"three-d-secure-info,omitempty"`
 	PayPalDetails                *PayPalDetails            `xml:"paypal"`
 	VenmoAccountDetails          *VenmoAccountDetails      `xml:"venmo-account"`
+	USBankAccountDetails         *USBankAccountDetails     `xml:"us-bank-account"`
 	AndroidPayDetails            *AndroidPayDetails        `xml:"android-pay-card"`
 	ApplePayDetails              *ApplePayDetails          `xml:"apple-pay"`
 	AdditionalProcessorResponse  string                    `xml:"additional-processor-response"`
