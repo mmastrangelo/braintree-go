@@ -14,6 +14,7 @@ type PaymentMethodRequest struct {
 	CustomerId         string                       `xml:"customer-id,omitempty"`
 	Token              string                       `xml:"token,omitempty"`
 	PaymentMethodNonce string                       `xml:"payment-method-nonce,omitempty"`
+	BillingAddress     *PaymentMethodBillingAddress `xml:"billing-address,omitempty"`
 	Options            *PaymentMethodRequestOptions `xml:"options,omitempty"`
 }
 
@@ -23,6 +24,25 @@ type PaymentMethodRequestOptions struct {
 	VerifyCard                      *bool  `xml:"verify-card,omitempty"`
 	VerificationMerchantAccountId   string `xml:"verification-merchant-account-id,omitempty"`
 	USBankAccountVerificationMethod string `xml:"us-bank-account-verification-method,omitempty"`
+}
+
+type PaymentMethodBillingAddress struct {
+	FirstName          string                              `xml:"first-name,omitempty"`
+	LastName           string                              `xml:"last-name,omitempty"`
+	Company            string                              `xml:"company,omitempty"`
+	StreetAddress      string                              `xml:"street-address,omitempty"`
+	ExtendedAddress    string                              `xml:"extended-address,omitempty"`
+	Locality           string                              `xml:"locality,omitempty"`
+	Region             string                              `xml:"region,omitempty"`
+	PostalCode         string                              `xml:"postal-code,omitempty"`
+	CountryCodeAlpha2  string                              `xml:"country-code-alpha2,omitempty"`
+	CountryCodeAlpha3  string                              `xml:"country-code-alpha3,omitempty"`
+	CountryCodeNumeric string                              `xml:"country-code-numeric,omitempty"`
+	CountryName        string                              `xml:"country-name,omitempty"`
+	Options            *PaymentMethodBillingAddressOptions `xml:"options,omitempty"`
+}
+type PaymentMethodBillingAddressOptions struct {
+	UpdateExisting bool `xml:"update-existing,omitempty"`
 }
 
 func (g *PaymentMethodGateway) Create(ctx context.Context, paymentMethodRequest *PaymentMethodRequest) (PaymentMethod, error) {
